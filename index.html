@@ -1,71 +1,197 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive activity page with tasks for enhanced learning.">
     <title>Active Learning Activity</title>
+
+    <!-- Link to Google Fonts and Font Awesome for Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0sA0FfDOMVj4kV+FT/t/8jf7sa10jTfsw4DCl8qHU5gT2W" crossorigin="anonymous">
+
     <style>
+        /* General body styling */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f5;
+            background-color: #f4f6fa;
             color: #333;
             text-align: center;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
         }
 
+        /* Falling leaves container */
+        .falling-leaves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .leaf {
+            position: absolute;
+            top: -50px;
+            width: 20px;
+            height: 20px;
+            background-image: url('https://img.icons8.com/emoji/48/000000/leaf-fluttering-in-wind-emoji.png');
+            background-size: cover;
+            animation: fall linear infinite;
+        }
+
+        /* Different fall animations for each leaf */
+        @keyframes fall {
+            to {
+                transform: translateX(100vw) translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Heading styling with Google Font and Gradient Text */
         h1 {
-            color: #0033cc;
-            font-size: 2.5em;
+            font-family: 'Poppins', sans-serif;
+            font-size: 3em;
             margin-top: 20px;
-            padding: 10px;
-            display: inline-block;
-            background-color: #cce7ff;
-            border-radius: 8px;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #ff4e50, #f9d423);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            z-index: 1;
         }
 
+        /* Table container for responsive design */
+        .table-container {
+            width: 80%;
+            max-width: 600px;
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            z-index: 1;
+        }
+
+        /* Table styling */
         table {
-            margin: 40px auto;
-            width: 50%;
+            width: 100%;
             border-collapse: collapse;
-            border: 3px solid #0033cc; /* Border around the entire table */
             background-color: #e6f2ff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
         }
 
+        /* Table rows and cells */
         tr {
-            transition: background-color 0.3s ease;
+            transition: background-color 0.5s ease; /* Smooth transition for row color */
         }
 
         td {
-            padding: 15px;
-            border: 2px solid #0073e6; /* Border around each cell */
+            padding: 20px;
             background-color: #cce7ff;
-            border-radius: 6px;
+            border-bottom: 1px solid #b3d1ff;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        /* Link styling with icon */
         td a {
             text-decoration: none;
             color: #003366;
             font-weight: bold;
             font-size: 1.2em;
-            display: block;
+            transition: color 0.3s, transform 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px; /* Spacing between icon and text */
         }
 
+        td a i {
+            font-size: 1.2em;
+            color: #ff4e50; /* Icon color */
+        }
+
+        /* Hover effects */
         td:hover {
-            background-color: #b3d1ff; /* Highlight cell on hover */
+            background-color: #b3d1ff;
         }
 
         td a:hover {
             color: #ffd700;
+            transform: scale(1.1);
+        }
+
+        /* Last row styling */
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2em;
+                padding: 10px 20px;
+            }
+
+            .table-container {
+                width: 90%;
+            }
+
+            td {
+                font-size: 1em;
+                padding: 15px;
+            }
+
+            table, tr, td {
+                display: block;
+                width: 100%;
+            }
+
+            td {
+                margin-bottom: 10px;
+                border: none;
+                border-radius: 8px;
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            }
         }
     </style>
 </head>
 <body>
-    <h1><mark>Active Learning Activity 1</mark></h1>
-    <table>
-        <tr>
-            <td><a href="Task_1.html">TASK 1</a></td>
-            <td><a href="Task_2.html">TASK 2</a></td>
-            <td><a href="Task_3.html">TASK 3</a></td>
-        </tr>
-    </table>
+    <div class="falling-leaves">
+        <!-- Multiple leaves with random animations -->
+        <div class="leaf" style="left: 5%; animation-duration: 8s;"></div>
+        <div class="leaf" style="left: 15%; animation-duration: 10s;"></div>
+        <div class="leaf" style="left: 25%; animation-duration: 12s;"></div>
+        <div class="leaf" style="left: 35%; animation-duration: 14s;"></div>
+        <div class="leaf" style="left: 45%; animation-duration: 9s;"></div>
+        <div class="leaf" style="left: 55%; animation-duration: 11s;"></div>
+        <div class="leaf" style="left: 65%; animation-duration: 13s;"></div>
+        <div class="leaf" style="left: 75%; animation-duration: 15s;"></div>
+        <div class="leaf" style="left: 85%; animation-duration: 16s;"></div>
+        <div class="leaf" style="left: 95%; animation-duration: 12s;"></div>
+    </div>
+
+    <h1>Active Learning Activity 1</h1>
+    <div class="table-container">
+        <table aria-label="Active Learning Tasks Table">
+            <tr>
+                <td><a href="Task_1.html" aria-label="Link to Task 1"><i class="fas fa-leaf"></i>TASK 1</a></td>
+                <td><a href="Task_2.html" aria-label="Link to Task 2"><i class="fas fa-leaf"></i>TASK 2</a></td>
+                <td><a href="Task_3.html" aria-label="Link to Task 3"><i class="fas fa-leaf"></i>TASK 3</a></td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>
